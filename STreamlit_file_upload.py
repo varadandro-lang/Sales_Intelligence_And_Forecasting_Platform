@@ -96,21 +96,27 @@ if uploaded_file is not None:
         file_name = uploaded_file.name
         
         # Step A: Read the raw file into a DataFrame
+        # Step A: Read the raw file into a DataFrame
         if file_name.endswith('.csv'):
             raw_df = pd.read_csv(uploaded_file)
         elif file_name.endswith(('.xlsx', '.xls')):
-    # Try using the 'calamine' engine
             raw_df = pd.read_excel(uploaded_file, engine='calamine')
         else:
             st.error("Unsupported file type!")
             st.stop()
             
+        # --- THE GATEKEEPER ---
+        # Add this check right here!
+        if 'revenue' not in raw_df.columns:
+            st.error("The Data does not contain the required field REVENUE.")
+            st.stop() 
+        # ----------------------
+            
         st.success(f"{file_name} successfully loaded!")
         
         # Display the RAW data
         st.subheader("Raw Data Preview")
-        st.dataframe(raw_df.head(5)) 
-        
+        st.dataframe(raw_df.head(5))
         
         # ==========================================
         # 1. THE CLEANING PIPELINE
