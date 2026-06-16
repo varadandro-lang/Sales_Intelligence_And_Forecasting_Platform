@@ -29,9 +29,9 @@ def render_sidebar(uploaded_file, df=None, rev_col=None):
             st.divider()
             
         # 3. Navigation
-        st.subheader("📍 Navigation")
+        st.subheader("📍 Overview")
         options = ["Dashboard Overview", "Sales Analytics", "Product Performance", "ML & AI Studio"]
-        page = st.radio("Select View:", options, 
+        page = st.radio("Over View:", options, 
                         index=options.index(st.session_state.get('page', options[0])),
                         disabled=(df is None))
         st.session_state.page = page
