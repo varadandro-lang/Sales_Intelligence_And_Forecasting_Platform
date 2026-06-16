@@ -108,7 +108,7 @@ if uploaded_file is not None:
         # --- THE GATEKEEPER ---
         # Add this check right here!
         if 'revenue' not in raw_df.columns:
-            st.error("The Data does not contain the required field REVENUE.")
+            st.error("The Data does not contain the required field revenue.")
             st.stop() 
         # ----------------------
             
